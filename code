@@ -1,0 +1,27 @@
+import numpy as np
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
+import matplotlib.pyplot as plt
+
+X = np.array([[1, 1], [2, 1], [4, 3], [5, 4]])
+y = np.array(["red", "red", "blue", "blue"])
+new_point = np.array([[3, 2]])
+
+print("=== K-Nearest Neighbors ===")
+knn = KNeighborsClassifier(n_neighbors=3)
+knn.fit(X, y)
+knn_prediction = knn.predict(new_point)
+print(f"KNN Prediction for point {new_point[0]}: {knn_prediction[0]}")
+
+plt.figure(figsize=(6, 5))
+plt.scatter(X[:, 0], X[:, 1], c=['red','red','blue','blue'], s=100, label="Data points")
+plt.scatter(new_point[:, 0], new_point[:, 1], c='black', s=200, marker='X', label="New point")
+plt.title("KNN Example")
+plt.legend()
+plt.show()
+
+print("\n=== Decision Tree Classifier ===")
+dt = DecisionTreeClassifier()
+dt.fit(X, y)
+dt_prediction = dt.predict(new_point)
+print(f"Decision Tree Prediction for point {new_point[0]}: {dt_prediction[0]}")
